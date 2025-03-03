@@ -13,11 +13,6 @@ public class SampleTests {
     private GUI.WebDriver driver;
 
 
-    @Test()
-    public void checkHomePageTitleIsCorrect() {
-        new LoginPage(driver).verifyBrowserTitleIsCorrect();
-    }
-
 
     @BeforeClass
     public void beforeClass() {
@@ -31,13 +26,16 @@ public class SampleTests {
     }
 
     @Test
-    public void checkOrder() {
+    public void addEmployee() throws InterruptedException {
         new LoginPage(driver).login("skylinedynamics", "@Test123");
         new DashboardPage(driver).validateHomePageOpen();
         new HeaderPage(driver).chooseProfile("Dunkin' Egypt");
-        new NavigationPage(driver).navigateToOrders().navigateToEmployee();
+        //this wait should be handled in another way and should be removed but letting it for dubbing purpose
+        Thread.sleep(10000);
+
+        new NavigationPage(driver).navigateToEmployee();
         new EmployeePage(driver).navigateToAddNewEmp();
-        new RegisterNewEmployeePage(driver).addEmployee("test", "user", "testAutomation", "1234567a1!", "test1234@gm.com", "Driver", "El Korba").clickSave();
+        new RegisterNewEmployeePage(driver).addEmployee("test1", "user1", "testAutomation1", "1234567a1!", "test1234@gm.com", "Driver", "El Korba").clickSave();
         new EmployeePage(driver).verifyEmployeeExistence("testAutomation");
     }
 

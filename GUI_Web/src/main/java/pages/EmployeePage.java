@@ -20,7 +20,7 @@ public class EmployeePage {
     }
 
     public EmployeePage verifyEmployeeExistence(String userName) {
-        driver.verifyThat().element(By.xpath(employeePath.replace("value", userName))).exists();
+        driver.verifyThat().element(By.xpath(employeePath.replace("value", userName))).exists().perform();
         return this;
     }
 
